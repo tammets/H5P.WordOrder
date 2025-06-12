@@ -1,0 +1,41 @@
+[
+    {
+        "name": "words",
+        "type": "list",
+        "label": "Words",
+        "description": "Add words in the order they should appear in the final sentence. Students will see these words in random order and need to arrange them correctly.",
+        "entity": "word",
+        "field": {
+            "name": "word",
+            "type": "text",
+            "label": "Word",
+            "description": "Enter a word"
+        }
+    },
+    {
+        "name": "instructions",
+        "type": "text",
+        "label": "Instructions",
+        "description": "Instructions shown to the student",
+        "default": "Drag and drop the words to form a correct sentence."
+    },
+    {
+        "name": "feedback",
+        "type": "group",
+        "label": "Feedback Messages",
+        "fields": [
+            {
+                "name": "correct",
+                "type": "text",
+                "label": "Correct Answer Message",
+                "default": "Correct! The sentence is in the right order."
+            },
+            {
+                "name": "incorrect",
+                "type": "text",
+                "label": "Incorrect Answer Message",
+                "default": "Not quite right. Try again!"
+            }
+        ]
+    }
+] 

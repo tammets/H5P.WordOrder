@@ -1,0 +1,27 @@
+{
+    "title": "Word Order",
+    "machineName": "H5P.WordOrder",
+    "majorVersion": 1,
+    "minorVersion": 0,
+    "patchVersion": 0,
+    "runnable": 1,
+    "author": "Your Name",
+    "coreApi": {
+        "majorVersion": 1,
+        "minorVersion": 19
+    },
+    "preloadedJs": [
+        { "path": "word-order.js" }
+    ],
+    "preloadedCss": [
+        { "path": "word-order.css" }
+    ],
+    "preloadedDependencies": [
+  {
+    "machineName": "jQuery.ui",
+    "majorVersion": 1,
+    "minorVersion": 10,
+    "defaultStyles": true
+  }
+    ]
+}

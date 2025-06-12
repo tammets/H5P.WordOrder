@@ -1,0 +1,15 @@
+{
+  "title": "Word Order",
+  "language": "en",
+  "mainLibrary": "H5P.WordOrder",
+  "embedTypes": [
+    "div"
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "H5P.WordOrder",
+      "majorVersion": 1,
+      "minorVersion": 0
+    }
+  ]
+}

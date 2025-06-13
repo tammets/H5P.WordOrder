@@ -24,42 +24,10 @@
                 .text(this.instructions)
                 .appendTo($container);
             
-            // Create drop zones container
-            var $dropZonesContainer = H5P.jQuery('<div>')
-                .addClass('h5p-word-order-drop-zones')
-                .appendTo($container);
-            
-            // Create words container
+            // Create sortable words container
             var $wordsContainer = H5P.jQuery('<div>')
-                .addClass('h5p-word-order-words-container')
+                .addClass('h5p-word-order-words-container sortable')
                 .appendTo($container);
-            
-            // Create drop zones
-            this.words.forEach(function(word, index) {
-                H5P.jQuery('<div>')
-                    .addClass('h5p-word-order-drop-zone')
-                    .attr('data-position', index)
-                    .appendTo($dropZonesContainer)
-                    .droppable({
-                        accept: '.h5p-word-order-word',
-                        hoverClass: 'h5p-word-order-drop-zone-hover',
-                        drop: function(event, ui) {
-                            var $word = H5P.jQuery(ui.draggable);
-                            var $dropZone = H5P.jQuery(this);
-                            
-                            // If drop zone already has a word, move it back to words container
-                            if ($dropZone.children().length > 0) {
-                                $dropZone.children().appendTo($wordsContainer);
-                            }
-                            
-                            // Move the word to the drop zone
-                            $word.appendTo($dropZone);
-                            
-                            // Check if all words are placed
-                            self.checkCompletion();
-                        }
-                    });
-            });
             
             // Shuffle words
             var shuffledWords = [].concat(this.words).sort(function() { return Math.random() - 0.5; });
@@ -69,18 +37,20 @@
                 H5P.jQuery('<div>')
                     .addClass('h5p-word-order-word')
                     .attr('data-index', index)
-                    .text(word.word || word) // Support both object and string formats
-                    .appendTo($wordsContainer)
-                    .draggable({
-                        revert: 'invalid',
-                        helper: 'clone',
-                        start: function(event, ui) {
-                            H5P.jQuery(this).addClass('dragging');
-                        },
-                        stop: function(event, ui) {
-                            H5P.jQuery(this).removeClass('dragging');
-                        }
-                    });
+                    .text(word.word || word)
+                    .appendTo($wordsContainer);
+            });
+            
+            // Make the words sortable
+            $wordsContainer.sortable({
+                axis: 'x',
+                containment: 'parent',
+                cursor: 'move',
+                tolerance: 'pointer',
+                items: '.h5p-word-order-word',
+                update: function() {
+                    // Optionally, you can auto-check on every change
+                }
             });
             
             // Add check button
@@ -89,7 +59,7 @@
                 .text('Check Answer')
                 .appendTo($container)
                 .click(function() {
-                    self.checkAnswer();
+                    self.checkAnswer($wordsContainer);
                 });
             
             // Add feedback container
@@ -98,26 +68,21 @@
                 .appendTo($container);
         };
         
-        WordOrder.prototype.checkCompletion = function() {
-            var $dropZones = H5P.jQuery('.h5p-word-order-drop-zone');
-            var allWordsPlaced = $dropZones.toArray().every(function(zone) { return H5P.jQuery(zone).children().length > 0; });
-            
-            if (allWordsPlaced) {
-                this.checkAnswer();
-            }
-        };
-        
-        WordOrder.prototype.checkAnswer = function() {
+        WordOrder.prototype.checkAnswer = function($wordsContainer) {
             var currentOrder = [];
-            H5P.jQuery('.h5p-word-order-drop-zone').each(function() {
-                var $word = H5P.jQuery(this).children('.h5p-word-order-word');
-                if ($word.length > 0) {
-                    currentOrder.push(parseInt($word.attr('data-index')));
-                }
+            $wordsContainer.find('.h5p-word-order-word').each(function() {
+                var $word = H5P.jQuery(this);
+                var text = $word.text();
+                currentOrder.push(text);
             });
             
-            var isCorrect = currentOrder.every(function(wordIndex, position) {
-                return wordIndex === position;
+            // Get the correct order as text
+            var correctOrder = this.words.map(function(word) {
+                return word.word || word;
+            });
+            
+            var isCorrect = currentOrder.length === correctOrder.length && currentOrder.every(function(word, idx) {
+                return word === correctOrder[idx];
             });
             
             this.$feedback

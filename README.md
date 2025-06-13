@@ -88,4 +88,4 @@ For issues and feature requests, please use the GitHub issue tracker.
 
 ## Credits
 
-Priit Tammets / AI
+Priit Tammets

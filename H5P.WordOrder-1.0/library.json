@@ -5,7 +5,7 @@
     "minorVersion": 0,
     "patchVersion": 0,
     "runnable": 1,
-    "author": "Priit Tammets / AI",
+    "author": "Priit Tammets",
     "coreApi": {
         "majorVersion": 1,
         "minorVersion": 19

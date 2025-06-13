@@ -45,33 +45,6 @@ This content type enables:
 2. Drag each word to its correct position
 3. Click "Check Answer" to verify the sequence
 4. Receive immediate feedback on the answer
-
-## Development
-
-### Prerequisites
-
-- H5P development environment
-- Basic knowledge of JavaScript and CSS
-- Familiarity with jQuery UI (for drag-and-drop functionality)
-
-### File Structure
-
-```
-H5P.WordOrder-1.0/
-├── library.json        # Content type definition
-├── semantics.json     # Content structure definition
-├── word-order.js      # Main JavaScript file
-├── word-order.css     # Styling
-└── icon.svg           # Content type icon
-```
-
-### Building from Source
-
-1. Clone this repository
-2. Make your modifications
-3. Package the content type:
-   ```bash
-   h5p pack H5P.WordOrder-1.0 word-order.h5p
    ```
 
 ## Contributing

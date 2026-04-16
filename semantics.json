@@ -1,0 +1,82 @@
+[
+    {
+        "name": "instructions",
+        "type": "text",
+        "label": "Instructions",
+        "description": "Instructions shown to the student",
+        "default": "Drag and drop the words to form a correct sentence."
+    },
+    {
+        "name": "words",
+        "type": "list",
+        "label": "Words",
+        "description": "Add words in the order they should appear in the final sentence. Students will see these words in random order and need to arrange them correctly.",
+        "entity": "word",
+        "min": 2,
+        "field": {
+            "name": "word",
+            "type": "text",
+            "label": "Word",
+            "description": "Enter a word"
+        }
+    },
+    {
+        "name": "behaviour",
+        "type": "group",
+        "label": "Behavioural settings",
+        "importance": "low",
+        "optional": true,
+        "fields": [
+            {
+                "name": "enableRetry",
+                "type": "boolean",
+                "label": "Enable \"Retry\" button",
+                "default": true
+            },
+            {
+                "name": "enableSolutionsButton",
+                "type": "boolean",
+                "label": "Enable \"Show Solution\" button",
+                "default": true
+            }
+        ]
+    },
+    {
+        "name": "l10n",
+        "type": "group",
+        "label": "User interface",
+        "common": true,
+        "fields": [
+            {
+                "name": "checkAnswer",
+                "type": "text",
+                "label": "Check answer button label",
+                "default": "Check Answer"
+            },
+            {
+                "name": "retry",
+                "type": "text",
+                "label": "Retry button label",
+                "default": "Retry"
+            },
+            {
+                "name": "showSolution",
+                "type": "text",
+                "label": "Show solution button label",
+                "default": "Show Solution"
+            },
+            {
+                "name": "correctMessage",
+                "type": "text",
+                "label": "Correct feedback message",
+                "default": "Correct! The sentence is in the right order."
+            },
+            {
+                "name": "incorrectMessage",
+                "type": "text",
+                "label": "Incorrect feedback message",
+                "default": "Not quite right. Try again!"
+            }
+        ]
+    }
+]

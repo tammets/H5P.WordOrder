@@ -11,39 +11,12 @@
     color: #333;
 }
 
-.h5p-word-order-drop-zones {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
-    min-height: 60px;
-    padding: 15px;
-    background: #f5f5f5;
-    border-radius: 5px;
-}
-
-.h5p-word-order-drop-zone {
-    min-width: 100px;
-    min-height: 40px;
-    border: 2px dashed #ccc;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-}
-
-.h5p-word-order-drop-zone-hover {
-    border-color: #4CAF50;
-    background: rgba(76, 175, 80, 0.1);
-}
-
 .h5p-word-order-words-container {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     margin-bottom: 20px;
-    min-height: 100px;
+    min-height: 60px;
     padding: 15px;
     background: #f5f5f5;
     border-radius: 5px;
@@ -61,16 +34,42 @@
 
 .h5p-word-order-word:hover {
     border-color: #999;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.h5p-word-order-word.dragging {
-    opacity: 0.5;
+.h5p-word-order-word.ui-sortable-helper {
+    opacity: 0.8;
     transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.h5p-word-order-word.h5p-word-correct {
+    border-color: #3c763d;
+    background: #dff0d8;
+    cursor: default;
+}
+
+.h5p-word-order-word.h5p-word-incorrect {
+    border-color: #a94442;
+    background: #f2dede;
+    cursor: default;
+}
+
+.h5p-word-order-word.h5p-word-solution {
+    border-color: #31708f;
+    background: #d9edf7;
+    cursor: default;
+}
+
+.h5p-word-order-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 
 .h5p-word-order-feedback {
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 15px;
     border-radius: 4px;
     display: none;
@@ -90,22 +89,38 @@
     display: block;
 }
 
-.h5p-word-order-check-button {
-    background: #4CAF50;
-    color: white;
+.h5p-word-order-check-button,
+.h5p-word-order-retry-button,
+.h5p-word-order-solution-button {
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 1em;
     transition: background 0.2s ease;
+    color: white;
+}
+
+.h5p-word-order-check-button {
+    background: #4CAF50;
 }
 
 .h5p-word-order-check-button:hover {
     background: #45a049;
 }
 
-.h5p-word-order-check-button:disabled {
-    background: #cccccc;
-    cursor: not-allowed;
-} 
+.h5p-word-order-retry-button {
+    background: #337ab7;
+}
+
+.h5p-word-order-retry-button:hover {
+    background: #286090;
+}
+
+.h5p-word-order-solution-button {
+    background: #f0ad4e;
+}
+
+.h5p-word-order-solution-button:hover {
+    background: #ec971f;
+}

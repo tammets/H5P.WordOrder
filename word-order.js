@@ -89,6 +89,8 @@
                 containment: 'parent',
                 cursor: 'move',
                 tolerance: 'pointer',
+                delay: 150,
+                distance: 5,
                 items: '.h5p-word-order-word',
                 update: function () {
                     self.updateCurrentOrder();

@@ -25,9 +25,14 @@
 .h5p-word-order-word {
     background: #fff;
     padding: 10px 15px;
+    min-height: 44px;
+    min-width: 44px;
+    box-sizing: border-box;
     border: 2px solid #ddd;
     border-radius: 4px;
     cursor: move;
+    -ms-touch-action: none;
+    touch-action: none;
     user-select: none;
     transition: all 0.2s ease;
 }
@@ -93,6 +98,7 @@
 .h5p-word-order-retry-button,
 .h5p-word-order-solution-button {
     padding: 10px 20px;
+    min-height: 44px;
     border: none;
     border-radius: 4px;
     cursor: pointer;

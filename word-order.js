@@ -21,13 +21,32 @@
             return a;
         }
 
+        /**
+         * Parse words string into an array of draggable parts.
+         * Words are space-separated. Wrap with asterisks to group: *kes oli must*
+         */
+        function parseWords(input) {
+            if (Array.isArray(input)) {
+                return input.map(function (w) { return w.word || w; });
+            }
+            if (typeof input !== 'string' || !input.trim()) {
+                return [];
+            }
+            var parts = [];
+            var regex = /\*([^*]+)\*|(\S+)/g;
+            var match;
+            while ((match = regex.exec(input)) !== null) {
+                parts.push((match[1] || match[2]).trim());
+            }
+            return parts;
+        }
+
         function WordOrder(params, id, contentData) {
             H5P.EventDispatcher.call(this);
 
             this.params = params;
             this.id = id;
             this.contentData = contentData || {};
-            this.words = params.words || [];
             this.instructions = params.instructions || 'Drag and drop the words to form a correct sentence.';
             this.feedback = params.feedback || {};
             this.score = 0;
@@ -48,10 +67,8 @@
                 enableSolutionsButton: true
             }, params.behaviour);
 
-            // Correct order as text array
-            this.correctOrder = this.words.map(function (word) {
-                return word.word || word;
-            });
+            // Correct order as text array (supports both old list format and new text format)
+            this.correctOrder = parseWords(params.words || '');
 
             // Restore previous state or shuffle
             var previousState = this.contentData.previousState;
@@ -86,12 +103,18 @@
 
             // Make the words sortable
             this.$wordsContainer.sortable({
-                containment: 'parent',
                 cursor: 'move',
                 tolerance: 'pointer',
                 delay: 150,
                 distance: 5,
                 items: '.h5p-word-order-word',
+                placeholder: 'h5p-word-order-placeholder',
+                start: function (e, ui) {
+                    ui.placeholder.css({
+                        width: ui.item.outerWidth(),
+                        height: ui.item.outerHeight()
+                    });
+                },
                 update: function () {
                     self.updateCurrentOrder();
                 }

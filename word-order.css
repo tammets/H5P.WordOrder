@@ -42,6 +42,12 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.h5p-word-order-placeholder {
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    background: #e8e8e8;
+}
+
 .h5p-word-order-word.ui-sortable-helper {
     opacity: 0.8;
     transform: scale(1.05);

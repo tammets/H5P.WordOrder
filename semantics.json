@@ -8,16 +8,11 @@
     },
     {
         "name": "words",
-        "type": "list",
+        "type": "text",
         "label": "Words",
-        "description": "Add words in the order they should appear in the final sentence. Students will see these words in random order and need to arrange them correctly.",
-        "entity": "word",
-        "min": 2,
-        "field": {
-            "name": "word",
-            "type": "text",
-            "label": "Word",
-            "description": "Enter a word"
+        "description": "Enter words separated by spaces in the correct order. To group multiple words into one draggable block, wrap them with asterisks, e.g.: elas metsas *kes oli must* ja inetu",
+        "important": {
+            "description": "<ul><li>Separate words with spaces</li><li>Wrap multi-word groups with asterisks: *kes oli must*</li></ul>"
         }
     },
     {
